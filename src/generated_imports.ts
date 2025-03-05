@@ -39,4 +39,12 @@ export const pieceIntegrations: PiecePackage = {
   },
 };
 
-console.log(JSON.stringify(pieceIntegrations.Freshdesk.piece, null, 2));
+// console.log(
+//   JSON.stringify(
+//     pieceIntegrations.Freshdesk.piece._actions.get_contacts.props,
+//     null,
+//     2
+//   )
+// );
+
+// console.log(JSON.stringify(pieceIntegrations.Freshdesk.piece, null, 2));
