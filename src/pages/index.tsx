@@ -13,7 +13,9 @@ import {
   Paper,
   CircularProgress,
   SelectChangeEvent,
+  Divider,
 } from "@mui/material";
+import PieceForm from "@/components/PieceForm";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,6 +39,7 @@ export default function Home() {
   const [actions, setActions] = useState<string[]>([]);
   const [selectedAction, setSelectedAction] = useState<string>("");
   const [actionProps, setActionProps] = useState<any>(null);
+  const [formData, setFormData] = useState<Record<string, any>>({});
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -116,6 +119,7 @@ export default function Home() {
         const data = await response.json();
         console.log("Action props data:", data);
         setActionProps(data);
+        setFormData({});
         setError(null);
       } catch (error) {
         console.error("Error fetching action props:", error);
@@ -134,6 +138,11 @@ export default function Home() {
 
   const handleActionChange = (event: SelectChangeEvent) => {
     setSelectedAction(event.target.value);
+  };
+
+  const handleFormChange = (data: Record<string, any>) => {
+    setFormData(data);
+    console.log("Form data updated:", data);
   };
 
   return (
@@ -198,6 +207,12 @@ export default function Home() {
               )}
             </Box>
 
+            {/* PieceForm Component */}
+            {selectedAction && actionProps && !loading && (
+              <PieceForm properties={actionProps} onChange={handleFormChange} />
+            )}
+
+            {/* JSON Display */}
             <Paper
               elevation={2}
               sx={{
@@ -220,15 +235,38 @@ export default function Home() {
                   <CircularProgress />
                 </Box>
               ) : selectedAction && actionProps ? (
-                <pre
-                  style={{
-                    margin: 0,
-                    overflow: "auto",
-                    maxHeight: "500px",
-                  }}
-                >
-                  {JSON.stringify(actionProps, null, 2)}
-                </pre>
+                <>
+                  <Typography variant="subtitle1" gutterBottom>
+                    Action Properties (JSON)
+                  </Typography>
+                  <pre
+                    style={{
+                      margin: 0,
+                      overflow: "auto",
+                      maxHeight: "500px",
+                    }}
+                  >
+                    {JSON.stringify(actionProps, null, 2)}
+                  </pre>
+                  
+                  {Object.keys(formData).length > 0 && (
+                    <>
+                      <Divider sx={{ my: 2 }} />
+                      <Typography variant="subtitle1" gutterBottom>
+                        Form Data
+                      </Typography>
+                      <pre
+                        style={{
+                          margin: 0,
+                          overflow: "auto",
+                          maxHeight: "300px",
+                        }}
+                      >
+                        {JSON.stringify(formData, null, 2)}
+                      </pre>
+                    </>
+                  )}
+                </>
               ) : (
                 <Box
                   sx={{
