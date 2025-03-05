@@ -2,6 +2,7 @@
   "name": "dynamic-pieces",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
@@ -9,17 +10,26 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@activepieces/piece-freshdesk": "^0.1.0",
+    "@activepieces/pieces-common": "^0.4.1",
+    "@activepieces/pieces-framework": "^0.7.44",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/icons-material": "^6.4.6",
+    "@mui/material": "^6.4.6",
+    "@readme/openapi-parser": "^2.7.0",
+    "dotenv": "^16.4.7",
+    "next": "15.2.1",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "next": "15.2.1"
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@eslint/eslintrc": "^3",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.2.1",
-    "@eslint/eslintrc": "^3"
+    "typescript": "^5"
   }
 }

@@ -12,8 +12,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "strictNullChecks": false,
     "noImplicitAny": false,
+    "strictNullChecks": false,
     "incremental": true,
     "baseUrl": "src",
     "paths": {
